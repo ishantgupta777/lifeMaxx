@@ -6,7 +6,7 @@ const personSchema = mongoose.Schema({
         required: true
     },
     image: {
-        type: Buffer
+        type: String
     },
     age: {
         type: Number
@@ -24,7 +24,7 @@ const personSchema = mongoose.Schema({
     foundLost: {
         type: String,
         enum: ['Found', 'NotFound'],
-        default: 'NotFound'
+        default: 'Found'
     }
 }, {
     timestamps: true
