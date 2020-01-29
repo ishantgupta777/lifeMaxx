@@ -6,6 +6,7 @@ var cors = require('cors')
 var db = require('./db/mongoose')
 
 var formRouter = require('./routes/form');
+var safePeople = require('./routes/safePeople')
 
 var app = express();
 
@@ -23,5 +24,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors());
 
 app.use('/', formRouter);
+app.use('/safePeople', safePeople)
 
 module.exports = app;

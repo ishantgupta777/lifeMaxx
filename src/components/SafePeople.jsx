@@ -1,7 +1,8 @@
-import React, {Fragment, useEffect} from 'react';
-import {Typography, Divider,TextField} from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import React, {Fragment, useEffect,useState} from 'react';
+import {Typography, Divider,TextField,Card,CardContent,IconButton,Avatar} from '@material-ui/core';
+import { makeStyles,useTheme } from '@material-ui/core/styles';
 import axios from 'axios'
+import SafePerson from '../components/SafePerson'
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -12,15 +13,23 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const SafePeople = () => {
-    const classes = useStyles();
+
+    const [safePeople,setSafePeople] = useState([])
+    const [searchField,setSearchField] = useState('')
 
     useEffect( ()=>{
-        // const getSafePeople =async ()=>{
-        //     const response = await axios.get('/safepersons')
-        //     console.log(response)
-        // }
-        // getSafePeople()
+        const getSafePeople =async ()=>{
+            const response = await axios.get('/safePeople')
+            setSafePeople(response.data)
+        }
+        getSafePeople()
     },[])
+
+    const handleChange = (e)=>{
+        var searchField = e.target.value.substring(0,20)
+        // safePeople.filter((person)=>person.name.includes(searchField))
+        setSearchField(searchField)
+    }
 
     return (
         <Fragment>
@@ -28,9 +37,13 @@ const SafePeople = () => {
                 Safe People
             </Typography>
             <Divider style={{marginTop:'1rem'}}/>
-            <TextField id="standard-search" label="Search field" type="search" style={{width:'90%',margin :'1rem auto'}} />
+            <TextField id="standard-search" label="Search field" type="search" style={{width:'90%',margin :'1rem auto'}} onChange={handleChange} />
 
-
+            <div className="safe_people_grid" style={{display:'grid',gridTemplateColumns: '1fr 1fr',gridColumnGap:'.7rem',marginTop:'1rem'}}>
+                {safePeople.filter((person)=>person.name.toLowerCase().includes(searchField.toLowerCase())).map(person=>{
+                    return <SafePerson person={person} key={person._id} />
+                })}
+            </div>
 
         </Fragment>
     );

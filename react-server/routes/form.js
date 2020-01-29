@@ -19,7 +19,7 @@ router.post('/form', parser.single('image'), async function (req, res, next) {
 
     res.status(200).send(req.file)
   } catch (err) {
-    res.send(err)
+    res.status(500).send(err)
   }
 });
 
