@@ -42,11 +42,11 @@ const SafePerson = ({person}) => {
 
     return (
         <Fragment>
-            <Card className={classes.card} raised style={{marginBottom:'.7rem',display:'flex',alignItems:'center'}}>
+            <Card className={classes.card} raised style={{marginBottom:'.7rem',display:'flex',alignItems:'center',justifyContent:'center'}}>
                 <div className={classes.details}>
                     <CardContent className={classes.content}>
-                    <Typography component="h6" variant="h5">
-                        {name}
+                    <Typography component="h6" variant="h6">
+                        {name.substring(0,15)}
                     </Typography>
                     <Typography variant="subtitle2" color="textSecondary">
                         Age:{age} <br/>  RescueCentre:{rescueCentre}

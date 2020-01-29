@@ -10,14 +10,14 @@ function App() {
 
   return (
     <div className="App">
-      <MiniDrawer>
         <Router>
-            <Switch>
-              <Route exact path="/" component={NewsPage} />
-              <Route path="/form" component={PersonForm} />
-            </Switch>
+            <MiniDrawer>
+              <Switch>
+                <Route exact path="/" component={NewsPage} />
+                <Route path="/form" component={PersonForm} />
+              </Switch>
+            </MiniDrawer>
         </Router>
-      </MiniDrawer>
     </div>
   );
 }

@@ -31,7 +31,7 @@ export default function NewsCard({title,description,urlToArticle,urlToImage}) {
             title={title}
             />
             <CardContent>
-            <Typography gutterBottom variant="title" component="h2">
+            <Typography gutterBottom variant="h6" component="h2">
                 {title.substring(0,60)}
             </Typography>
             </CardContent>

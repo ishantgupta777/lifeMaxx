@@ -25,7 +25,7 @@ const useStyles = makeStyles(theme => ({
 const PersonForm = () => {
     const classes = useStyles();
     return (
-        <div style={{display:'grid',gridTemplateColumns:'3fr 2fr'}}>
+        <div style={{display:'grid',gridTemplateColumns:'4fr 4fr',gridGap:'1rem'}}>
            <Card className={classes.card} style={{flexBasis:'60'}}>
                 <CardContent>
                     <FormComponent/>

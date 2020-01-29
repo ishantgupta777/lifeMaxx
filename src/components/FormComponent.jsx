@@ -3,7 +3,7 @@ import {TextField,Button,Typography,Divider} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { useForm } from 'react-hook-form'
 import axios from 'axios'
-import faker from 'faker'
+import faker from 'faker/locale/en'
 
 
 const useStyles = makeStyles(theme => ({
@@ -36,9 +36,9 @@ const onSubmit = async (data)=>{
         document.getElementById('form_submission').innerText = 'UnSuccessfully Submitted' + err
     }
 
-        // const fakeData = async()=>{
+        // const fakeData = async(i)=>{
         //     var data = {
-        //         image : faker.image.people(500,500),
+        //         image : `${faker.image.people(200,200)}?random=${i}`,
         //         name : faker.name.findName(),
         //         email : faker.internet.email(),
         //         number : faker.phone.phoneNumber('##########'),
@@ -49,8 +49,8 @@ const onSubmit = async (data)=>{
 
         // }
 
-        // for(let i=0;i<30;i++){
-        //     await fakeData()
+        // for(let i=0;i<20;i++){
+        //     await fakeData(i)
         // }
 }
 
