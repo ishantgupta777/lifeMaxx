@@ -12,11 +12,15 @@ export default function HeatMap() {
 		height: '50vh',
 		latitude: 37.7577,
 		longitude: -122.4376,
-		zoom: 15
+		zoom: 17
 	});
 	const [ marker, setMarker ] = useState({
-		lat: 37.785164,
-		long: 100
+		lat: 15.391504500000002,
+		long: 73.87694239999999
+	});
+	const [ currentPosition, setCurrentPosition ] = useState({
+		lat: 15.391504500000002,
+		long: 73.87694239999999
 	});
 
 	useEffect(() => {
@@ -26,9 +30,14 @@ export default function HeatMap() {
 					setViewport({
 						...viewport,
 						latitude: pos.coords.latitude,
-						longitude: pos.coords.longitude
+						longitude: pos.coords.longitude,
+						zoom: 17
 					});
 					setMarker({
+						lat: pos.coords.latitude,
+						long: pos.coords.longitude
+					});
+					setCurrentPosition({
 						lat: pos.coords.latitude,
 						long: pos.coords.longitude
 					});
@@ -52,11 +61,23 @@ export default function HeatMap() {
 					setViewport({
 						...viewport,
 						latitude: lat,
-						longitude: long
+						longitude: long,
+						zoom: 17
 					});
 					setMarker({
 						lat,
 						long
+					});
+				} else if (!lastLocation) {
+					setViewport({
+						...viewport,
+						latitude: currentPosition.lat,
+						longitude: currentPosition.long,
+						zoom: 17
+					});
+					setMarker({
+						lat: currentPosition.lat,
+						long: currentPosition.long
 					});
 				}
 			};
