@@ -60,7 +60,12 @@ function NavBar({children,location}) {
 
   const drawer = (
     <div>
-      <div className={classes.toolbar} />
+         
+      <div className={classes.toolbar} style={{display:'flex',alignItems:'center',justifyContent:'center'}}>
+        <Typography variant="h4" noWrap style={{color:'white'}}>
+          lifeMaxx
+        </Typography>
+      </div>
       <Divider />
       <MenuList>
           <MenuItem style={{color:'white'}} component={Link} to="/" selected={'/'===location.pathname} >
@@ -108,9 +113,6 @@ function NavBar({children,location}) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap>
-            liteMaxx
-          </Typography>
         </Toolbar>
       </AppBar>
       <nav className={classes.drawer} aria-label="mailbox folders">
@@ -128,6 +130,7 @@ function NavBar({children,location}) {
               keepMounted: true, // Better open performance on mobile.
             }}
           >
+                   
             {drawer}
           </Drawer>
         </Hidden>
