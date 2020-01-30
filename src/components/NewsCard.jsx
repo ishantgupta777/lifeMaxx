@@ -11,8 +11,8 @@ import Link from '@material-ui/core/Link'
 
 const useStyles = makeStyles({
   card: {
-    maxWidth: 500,
-    margin : '2rem auto',
+    maxWidth: 350,
+    margin : '1.5rem auto',
   },
 });
 
@@ -21,24 +21,18 @@ export default function NewsCard({title,description,urlToArticle,urlToImage}) {
 
   return (
     <Link underline="none" href={urlToArticle} target="_blank">
-        <Card className={classes.card} variant="outlined" raised={true}>
+        <Card className={classes.card} variant="outlined" raised={true} style={{height:'250px',margin:'auto 1rem'}}>
         <CardActionArea>
             <CardMedia
             component="img"
             alt={title}
-            height="240"
+            height="100"
             image={urlToImage}
             title={title}
             />
             <CardContent>
             <Typography gutterBottom variant="h6" component="h2">
-                {title}
-            </Typography>
-            <Typography variant="body2" color="textSecondary" component="p">
-                {description}
-            </Typography>
-            <Typography variant="body2" color="textSecondary" component="p">
-                {description}
+                {title.substring(0,60)}
             </Typography>
             </CardContent>
         </CardActionArea>
