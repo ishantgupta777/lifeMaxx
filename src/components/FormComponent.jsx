@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import faker from 'faker/locale/en';
-
+import { useStateValue } from '../context/LastLocationContext';
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -54,15 +54,18 @@ const onSubmit = async (data) => {
 	// }
 };
 
-const onLocationChange = (e) => {
-	const newLocation = e.target.value;
-
-
-};
-
-const FormComponent = ({ rescueCentre, lastLocation,unsafe }) => {
+const FormComponent = ({ rescueCentre, lastLocation, unsafe }) => {
 	const classes = useStyles();
 	const { register, handleSubmit, errors } = useForm();
+
+	const [ lastLocation2, setLastLocation ] = useStateValue();
+
+	const onLocationChange = (e) => {
+		const newLocation = e.target.value;
+
+		setLastLocation(newLocation);
+		console.log(lastLocation2);
+	};
 
 	return (
 		<Fragment>
@@ -78,7 +81,7 @@ const FormComponent = ({ rescueCentre, lastLocation,unsafe }) => {
 			</Typography>
 			<Divider style={{ marginTop: '1rem' }} />
 			<img
-				src="https://bp-gc.in/3oWBkt"
+				src="https://bp-gc.in/3tA6HY"
 				id="profile_pic"
 				style={{ marginTop: '1rem', width: '250px', height: '230px', objectFit: 'cover' }}
 			/>
