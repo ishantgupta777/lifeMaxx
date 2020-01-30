@@ -62,9 +62,7 @@ const FormComponent = ({ rescueCentre, lastLocation, unsafe }) => {
 
 	const onLocationChange = (e) => {
 		const newLocation = e.target.value;
-
 		setLastLocation(newLocation);
-		console.log(lastLocation2);
 	};
 
 	return (
