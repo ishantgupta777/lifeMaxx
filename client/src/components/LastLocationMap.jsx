@@ -66,7 +66,7 @@ export default function HeatMap() {
 		() => {
 			const getLatLang = async () => {
 				const response = await axios.get(
-					`http://www.mapquestapi.com/geocoding/v1/address?key=ekC8XsButuiKAx0FzPDfCxNBxOeZoZPV&location=${lastLocation}`
+					`https://www.mapquestapi.com/geocoding/v1/address?key=ekC8XsButuiKAx0FzPDfCxNBxOeZoZPV&location=${lastLocation}`
 				);
 				if (response.data.results[0].locations[0]) {
 					var lat = response.data.results[0].locations[0].latLng.lat;
