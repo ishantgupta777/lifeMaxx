@@ -56,22 +56,33 @@ const FormComponent = ({ rescueCentre, lastLocation, unsafe }) => {
 			document.getElementById('form_submission').innerText = 'UnSuccessfully Submitted' + err;
 		}
 
-		// const fakeData = async(i)=>{
-		//     var data = {
-		//         image : `https://randomuser.me/api/portraits/women/${20+i}.jpg`,
-		//         name : faker.name.findName(),
-		//         email : faker.internet.email(),
-		//         number : faker.phone.phoneNumber('##########'),
-		//         rescueCentre : faker.lorem.word(),
-		//         age : 20
-		//     }
-		//     await axios.post('/form',data)
+		const fakeData = async (i) => {
+			var data = {
+				image: `https://randomuser.me/api/portraits/women/${20 + i}.jpg`,
+				name: faker.name.findName(),
+				email: faker.internet.email(),
+				number: faker.phone.phoneNumber('##########'),
+				age: 20
+			};
+			if (rescueCentre) {
+				data = {
+					...data,
+					rescueCentre: faker.lorem.word()
+				};
+			} else {
+				data = {
+					...data,
+					lastLocationLat: faker.address.latitude(),
+					lastLocationLong: faker.address.longitude(),
+					foundLost: 'NotFound'
+				};
+			}
+			await axios.post('/form', data);
+		};
 
-		// }
-
-		// for(let i=0;i<20;i++){
-		//     await fakeData(i)
-		// }
+		for (let i = 0; i < 30; i++) {
+			await fakeData(i);
+		}
 	};
 
 	return (
