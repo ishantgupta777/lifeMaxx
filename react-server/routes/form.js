@@ -8,7 +8,11 @@ router.post('/form', parser.single('image'), async function (req, res, next) {
 
   try {
     const form = JSON.parse(JSON.stringify(req.body))
-
+    if (form.lastLocationLat) {
+      form.lastLocation = [parseFloat(form.lastLocationLat), parseFloat(form.lastLocationLong)]
+      delete form.lastLocationLat
+      delete form.lastLocationLong
+    }
     let person = new Person(form)
     if (req.file)
       person = new Person({
@@ -19,6 +23,7 @@ router.post('/form', parser.single('image'), async function (req, res, next) {
 
     res.status(200).send(req.file)
   } catch (err) {
+    console.log(err)
     res.status(500).send(err)
   }
 });

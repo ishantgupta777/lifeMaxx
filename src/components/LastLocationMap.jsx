@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import ReactMapGL, { Marker } from 'react-map-gl';
 import { useStateValue } from '../context/LastLocationContext';
+import { useCoords } from '../context/LastCoordsContext';
 import axios from 'axios';
 
 const MAPBOX_TOKEN =
 	'pk.eyJ1IjoiaXNoYW50Z3VwdGE3NzciLCJhIjoiY2p5NDI5aXFpMTVvaDNnbGVhbTllZ2R3MyJ9.ndww9Z602MqyVtoiexGXqQ';
 
 export default function HeatMap() {
+	const [ coords, setCoords ] = useCoords();
+
 	const [ viewport, setViewport ] = useState({
 		width: '90%',
 		height: '50vh',
@@ -46,6 +49,16 @@ export default function HeatMap() {
 		}
 		getLocation();
 	}, []);
+
+	useEffect(
+		() => {
+			const setCoordsFun = () => {
+				setCoords(marker);
+			};
+			setCoordsFun();
+		},
+		[ marker ]
+	);
 
 	const [ lastLocation, useLastLocation ] = useStateValue();
 
@@ -92,6 +105,7 @@ export default function HeatMap() {
 			mapboxApiAccessToken={MAPBOX_TOKEN}
 			onViewportChange={(viewport) => setViewport(viewport)}
 			mapStyle="mapbox://styles/ishantgupta777/ck5zjfpzo0ysy1ipccqjbo3ix"
+			maxZoom={20}
 		>
 			<Marker
 				longitude={marker.long}

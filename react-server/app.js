@@ -7,6 +7,7 @@ var db = require('./db/mongoose')
 
 var formRouter = require('./routes/form');
 var safePeople = require('./routes/safePeople')
+var unSafePeople = require('./routes/unsafePeople')
 
 var app = express();
 
@@ -25,5 +26,6 @@ app.use(cors());
 
 app.use('/', formRouter);
 app.use('/safePeople', safePeople)
+app.use('/unsafePeople', unSafePeople)
 
 module.exports = app;

@@ -6,6 +6,7 @@ import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
 import PersonForm from './pages/Form';
 import Map from './pages/Map';
 import { LastLocationProvider } from './context/LastLocationContext';
+import { LastCoordsProvider } from './context/LastCoordsContext';
 
 function App() {
 	return (
@@ -13,11 +14,13 @@ function App() {
 			<Router>
 				<MiniDrawer>
 					<Switch>
-						<LastLocationProvider>
-							<Route exact path="/" component={NewsPage} />
-							<Route path="/form" component={PersonForm} />
-							<Route path="/map" component={Map} />
-						</LastLocationProvider>
+						<LastCoordsProvider>
+							<LastLocationProvider>
+								<Route exact path="/" component={NewsPage} />
+								<Route path="/form" component={PersonForm} />
+								<Route path="/map" component={Map} />
+							</LastLocationProvider>
+						</LastCoordsProvider>
 					</Switch>
 				</MiniDrawer>
 			</Router>

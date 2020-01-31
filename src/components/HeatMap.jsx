@@ -43,6 +43,7 @@ export default function HeatMap() {
 			mapboxApiAccessToken={MAPBOX_TOKEN}
 			onViewportChange={setViewport}
 			mapStyle="mapbox://styles/ishantgupta777/ck5zjfpzo0ysy1ipccqjbo3ix"
+			maxZoom={20}
 		>
 			{currentPosition.lat && (
 				<Marker latitude={currentPosition.lat} longitude={currentPosition.long} draggable>

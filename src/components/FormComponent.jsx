@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import faker from 'faker/locale/en';
 import { useStateValue } from '../context/LastLocationContext';
+import { useCoords } from '../context/LastCoordsContext';
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -15,54 +16,62 @@ const useStyles = makeStyles((theme) => ({
 	}
 }));
 
-const onSubmit = async (data) => {
-	document.getElementById('form_submission').innerText = 'Submitting';
-
-	let form_data = new FormData();
-	form_data.append('image', data.image[0]);
-	form_data.append('name', data.name);
-	form_data.append('age', data.age);
-	form_data.append('email', data.email);
-	form_data.append('number', data.number);
-	form_data.append('rescueCentre', data.rescueCentre);
-
-	try {
-		const response = await axios.post('/form', form_data);
-		if (response.data.url) {
-			document.getElementById('profile_pic').src = response.data.url;
-		}
-		document.getElementById('form_submission').innerText = 'Successfully Submitted';
-	} catch (err) {
-		document.getElementById('form_submission').innerText = 'UnSuccessfully Submitted' + err;
-	}
-
-	// const fakeData = async(i)=>{
-	//     var data = {
-	//         image : `https://randomuser.me/api/portraits/women/${20+i}.jpg`,
-	//         name : faker.name.findName(),
-	//         email : faker.internet.email(),
-	//         number : faker.phone.phoneNumber('##########'),
-	//         rescueCentre : faker.lorem.word(),
-	//         age : 20
-	//     }
-	//     await axios.post('/form',data)
-
-	// }
-
-	// for(let i=0;i<20;i++){
-	//     await fakeData(i)
-	// }
-};
-
 const FormComponent = ({ rescueCentre, lastLocation, unsafe }) => {
 	const classes = useStyles();
 	const { register, handleSubmit, errors } = useForm();
 
 	const [ lastLocation2, setLastLocation ] = useStateValue();
+	const [ coords, setCoords ] = useCoords();
 
 	const onLocationChange = (e) => {
 		const newLocation = e.target.value;
 		setLastLocation(newLocation);
+	};
+
+	const onSubmit = async (data) => {
+		document.getElementById('form_submission').innerText = 'Submitting';
+
+		let form_data = new FormData();
+		form_data.append('image', data.image[0]);
+		form_data.append('name', data.name);
+		form_data.append('age', data.age);
+		form_data.append('email', data.email);
+		form_data.append('number', data.number);
+
+		if (!rescueCentre) {
+			form_data.append('lastLocationLat', coords.lat);
+			form_data.append('lastLocationLong', coords.long);
+			form_data.append('foundLost', 'NotFound');
+		} else {
+			form_data.append('rescueCentre', data.rescueCentre);
+		}
+
+		try {
+			const response = await axios.post('/form', form_data);
+			if (response.data.url) {
+				document.getElementById('profile_pic').src = response.data.url;
+			}
+			document.getElementById('form_submission').innerText = 'Successfully Submitted';
+		} catch (err) {
+			document.getElementById('form_submission').innerText = 'UnSuccessfully Submitted' + err;
+		}
+
+		// const fakeData = async(i)=>{
+		//     var data = {
+		//         image : `https://randomuser.me/api/portraits/women/${20+i}.jpg`,
+		//         name : faker.name.findName(),
+		//         email : faker.internet.email(),
+		//         number : faker.phone.phoneNumber('##########'),
+		//         rescueCentre : faker.lorem.word(),
+		//         age : 20
+		//     }
+		//     await axios.post('/form',data)
+
+		// }
+
+		// for(let i=0;i<20;i++){
+		//     await fakeData(i)
+		// }
 	};
 
 	return (
