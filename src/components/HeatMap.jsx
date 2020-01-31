@@ -138,14 +138,12 @@ export default function HeatMap() {
 						latitude={latitude}
 						longitude={longitude}
 					>
-						<button className="person-marker">
 								<img
 							src={require('../assets/img/red_map_marker.png')}
 							alt="current_location"
 							style={{ width: '30px' }}
 							draggable={false}
 						/>
-						</button>
 					</Marker>
 					);
 				})}

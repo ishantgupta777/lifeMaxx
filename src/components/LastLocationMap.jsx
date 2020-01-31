@@ -15,7 +15,7 @@ export default function HeatMap() {
 		height: '70%',
 		latitude: 37.7577,
 		longitude: -122.4376,
-		zoom: 17
+		zoom: 4
 	});
 	const [ marker, setMarker ] = useState({
 		lat: 15.391504500000002,
@@ -34,7 +34,7 @@ export default function HeatMap() {
 						...viewport,
 						latitude: pos.coords.latitude,
 						longitude: pos.coords.longitude,
-						zoom: 17
+						zoom: 4
 					});
 					setMarker({
 						lat: pos.coords.latitude,
@@ -75,7 +75,7 @@ export default function HeatMap() {
 						...viewport,
 						latitude: lat,
 						longitude: long,
-						zoom: 17
+						zoom: 4
 					});
 					setMarker({
 						lat,
@@ -86,7 +86,7 @@ export default function HeatMap() {
 						...viewport,
 						latitude: currentPosition.lat,
 						longitude: currentPosition.long,
-						zoom: 17
+						zoom: 4
 					});
 					setMarker({
 						lat: currentPosition.lat,
