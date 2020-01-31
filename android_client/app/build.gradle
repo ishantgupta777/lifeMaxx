@@ -37,7 +37,7 @@ dependencies {
 
     //recyclerview dependency
     implementation "androidx.recyclerview:recyclerview:1.1.0"
-        // For control over item selection of both touch and mouse driven selection
+    // For control over item selection of both touch and mouse driven selection
     implementation "androidx.recyclerview:recyclerview-selection:1.1.0-beta01"
 
     //retrofit
@@ -54,5 +54,8 @@ dependencies {
     implementation 'com.google.firebase:firebase-database:19.2.0'
     //okhttp3
     implementation 'com.squareup.okhttp3:logging-interceptor:3.9.0'
+    //fresco
+    implementation 'com.facebook.fresco:fresco:2.1.0'
+
 
 }

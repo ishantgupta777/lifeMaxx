@@ -2,21 +2,25 @@ package com.antailbaxt3r.disastermanagementapp.utils;
 
 
 import android.app.Activity;
+import android.app.Application;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 
-public class App extends Activity {
+import com.facebook.drawee.backends.pipeline.Fresco;
+
+public class App extends Application {
 
     private static App instance;
 
     private SessionManager sessionManager;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public void onCreate() {
+        super.onCreate();
         instance = this;
         sessionManager = new SessionManager(this);
+        Fresco.initialize(this);
     }
 
     public static App getInstance(){
