@@ -12,7 +12,7 @@ export default function HeatMap() {
 
 	const [ viewport, setViewport ] = useState({
 		width: '90%',
-		height: '50vh',
+		height: '70%',
 		latitude: 37.7577,
 		longitude: -122.4376,
 		zoom: 17
