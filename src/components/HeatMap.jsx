@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ReactMapGL, { Marker } from 'react-map-gl';
+import axios from 'axios';
 
 const MAPBOX_TOKEN =
 	'pk.eyJ1IjoiaXNoYW50Z3VwdGE3NzciLCJhIjoiY2p5NDI5aXFpMTVvaDNnbGVhbTllZ2R3MyJ9.ndww9Z602MqyVtoiexGXqQ';
@@ -18,6 +19,8 @@ export default function HeatMap() {
 		long: -122.4376
 	});
 
+	const [ missingPeople, setMissingPeople ] = useState([]);
+
 	useEffect(() => {
 		function getLocation() {
 			if (navigator.geolocation) {
@@ -35,6 +38,12 @@ export default function HeatMap() {
 			}
 		}
 		getLocation();
+
+		const getMissingPeople = async () => {
+			const res = await axios.get('/unsafePeople');
+			setMissingPeople(res.data);
+		};
+		getMissingPeople();
 	}, []);
 
 	return (
@@ -54,6 +63,18 @@ export default function HeatMap() {
 					/>
 				</Marker>
 			)}
+			{missingPeople.map((person) => {
+				console.log(person.lastLocation.lat);
+				return (
+					<Marker latitude={person.lastLocation[0]} longitude={person.lastLocation[1]}>
+						<img
+							src={require('../assets/img/red_map_marker.png')}
+							alt="current_location"
+							style={{ width: '30px' }}
+						/>
+					</Marker>
+				);
+			})}
 		</ReactMapGL>
 	);
 }
