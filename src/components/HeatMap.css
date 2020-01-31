@@ -1,0 +1,18 @@
+.cluster-marker {
+    color: #fff;
+    background: linear-gradient(to right, rgb(237, 33, 58), rgb(147, 41, 30));
+    border-radius: 50%;
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.person-marker {
+    background: none;
+    border: none;
+}
+
+.person-marker img {
+    width: 25px;
+}
