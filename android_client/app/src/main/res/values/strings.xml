@@ -13,4 +13,6 @@
     <string name="menu_tools">Tools</string>
     <string name="menu_share">Share</string>
     <string name="menu_send">Send</string>
+    <string name="add_found_person">Add Found Person</string>
+    <string name="heat_map">Heat Map</string>
 </resources>

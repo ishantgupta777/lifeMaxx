@@ -8,6 +8,7 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
+import com.mapbox.mapboxsdk.Mapbox;
 
 public class App extends Application {
 
@@ -21,6 +22,7 @@ public class App extends Application {
         instance = this;
         sessionManager = new SessionManager(this);
         Fresco.initialize(this);
+        Mapbox.getInstance(this, "pk.eyJ1IjoiYW50YWlsYmF4dDNyIiwiYSI6ImNrNXM0Z284azBrN2EzZW4xYXAxY29hYnEifQ.zeh5xzVaZ-ve3GiFTDdK6g");
     }
 
     public static App getInstance(){

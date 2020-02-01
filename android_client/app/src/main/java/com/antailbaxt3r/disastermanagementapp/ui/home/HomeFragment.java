@@ -1,7 +1,9 @@
 package com.antailbaxt3r.disastermanagementapp.ui.home;
 
+import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,6 +15,9 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.SearchView;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
@@ -36,9 +41,12 @@ public class HomeFragment extends Fragment {
     private HomeViewModel homeViewModel;
     private RecyclerView recyclerView;
     private PersonRVAdapter adapter;
+    private SearchView searchView;
+    private SearchView.OnQueryTextListener searchQuery;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
+
         homeViewModel =
                 ViewModelProviders.of(this).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
@@ -47,8 +55,32 @@ public class HomeFragment extends Fragment {
 
         ArrayList<PeopleAPIModel> peopleList = new ArrayList<>();
         recyclerView = root.findViewById(R.id.person_rv);
+        searchView = root.findViewById(R.id.search_view);
 
-        Context context;
+        if (searchView != null) {
+            searchQuery = new androidx.appcompat.widget.SearchView.OnQueryTextListener() {
+                @Override
+                public boolean onQueryTextSubmit(String s) {
+                    return false;
+                }
+
+                @Override
+                public boolean onQueryTextChange(String s) {
+                    if (adapter != null) {
+                        adapter.getFilter().filter(s);
+                    }
+
+                    return false;
+                }
+            };
+            searchView.setOnQueryTextListener(searchQuery);
+
+        }
+
+        if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION)
+                == PackageManager.PERMISSION_DENIED){
+            ActivityCompat.requestPermissions(getActivity(), new String[] {Manifest.permission.ACCESS_FINE_LOCATION}, 111);
+        }
         final ProgressDialog progressDialog = new ProgressDialog(getActivity());
         progressDialog.setMessage("Loading...");
         progressDialog.show();
@@ -74,5 +106,17 @@ public class HomeFragment extends Fragment {
         });
 
         return root;
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == 111) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(getActivity(), "Location Access Granted!", Toast.LENGTH_SHORT).show();
+            }else{
+                Toast.makeText(getActivity(), "Please go to setting to provide location access", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 }

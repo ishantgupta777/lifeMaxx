@@ -1,6 +1,7 @@
 package com.antailbaxt3r.disastermanagementapp.viewholders;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.view.View;
 import android.widget.TextView;
@@ -9,8 +10,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.antailbaxt3r.disastermanagementapp.R;
+import com.antailbaxt3r.disastermanagementapp.activities.ProfileActivity;
 import com.antailbaxt3r.disastermanagementapp.models.PeopleAPIModel;
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.google.gson.Gson;
 
 public class PersonRVViewHolder extends RecyclerView.ViewHolder {
 
@@ -25,7 +28,7 @@ public class PersonRVViewHolder extends RecyclerView.ViewHolder {
         name_tv = itemView.findViewById(R.id.person_name);
     }
 
-    public void populate(PeopleAPIModel item, Context context){
+    public void populate(final PeopleAPIModel item, final Context context){
         if(!(item.getImage() == null || item.getImage() == "undefined")) {
             Uri uri = Uri.parse(item.getImage());
             image.setImageURI(uri);
@@ -38,6 +41,16 @@ public class PersonRVViewHolder extends RecyclerView.ViewHolder {
             found_tv.setTextColor(context.getResources().getColor(R.color.red));
         }
 
+        itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent openProfile = new Intent(context, ProfileActivity.class);
+                Gson gson = new Gson();
+                String myJson = gson.toJson(item);
+                openProfile.putExtra("json", myJson);
+                context.startActivity(openProfile);
+            }
+        });
     }
     public SimpleDraweeView getImage() {
         return image;

@@ -9,10 +9,10 @@ public class PeopleAPIModel {
 
     @SerializedName("relatives")
     @Expose
-    private List<Object> relatives = null;
+    private List<PeopleAPIModel> relatives = null;
     @SerializedName("lastLocation")
     @Expose
-    private List<Object> lastLocation = null;
+    private List<Double> lastLocation = null;
     @SerializedName("foundLost")
     @Expose
     private String foundLost;
@@ -27,7 +27,7 @@ public class PeopleAPIModel {
     private Integer age;
     @SerializedName("number")
     @Expose
-    private Object number;
+    private String number;
     @SerializedName("rescueCentre")
     @Expose
     private String rescueCentre;
@@ -44,21 +44,6 @@ public class PeopleAPIModel {
     @Expose
     private Integer v;
 
-    public List<Object> getRelatives() {
-        return relatives;
-    }
-
-    public void setRelatives(List<Object> relatives) {
-        this.relatives = relatives;
-    }
-
-    public List<Object> getLastLocation() {
-        return lastLocation;
-    }
-
-    public void setLastLocation(List<Object> lastLocation) {
-        this.lastLocation = lastLocation;
-    }
 
     public String getFoundLost() {
         return foundLost;
@@ -90,14 +75,6 @@ public class PeopleAPIModel {
 
     public void setAge(Integer age) {
         this.age = age;
-    }
-
-    public Object getNumber() {
-        return number;
-    }
-
-    public void setNumber(Object number) {
-        this.number = number;
     }
 
     public String getRescueCentre() {
@@ -134,6 +111,30 @@ public class PeopleAPIModel {
 
     public Integer getV() {
         return v;
+    }
+
+    public List<PeopleAPIModel> getRelatives() {
+        return relatives;
+    }
+
+    public void setRelatives(List<PeopleAPIModel> relatives) {
+        this.relatives = relatives;
+    }
+
+    public List<Double> getLastLocation() {
+        return lastLocation;
+    }
+
+    public void setLastLocation(List<Double> lastLocation) {
+        this.lastLocation = lastLocation;
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
     }
 
     public void setV(Integer v) {
