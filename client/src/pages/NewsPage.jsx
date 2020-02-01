@@ -3,6 +3,7 @@ import {Typography,Card,CardContent, Divider} from '@material-ui/core'
 import {makeStyles} from '@material-ui/core/styles'
 import axios from 'axios'
 import NewsCard from '../components/NewsCard'
+import LiveUpdates from '../components/LiveUpdateForm'
 
 
 const useStyles = makeStyles({
@@ -39,13 +40,12 @@ function NewsPage() {
   const classes = useStyles();
 
   return (
-    <Fragment>
+    <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gridGap:'2rem'}}>
         <Card className={classes.card} raised >
         <Typography variant="h4" style={{color : 'white',padding : '.7rem 0', background : 'linear-gradient(to right, rgb(142, 45, 226), rgb(74, 0, 224))'}}>
           Latest News
         </Typography>
-        <Divider light/>
-          <CardContent style={{display:"grid",gridTemplateColumns : '1fr 1fr',gridRowGap : '1.5rem'}} >
+          <CardContent style={{display:"grid",gridTemplateColumns : '1fr 1fr',gridRowGap : '1.5rem',background:'#efefef'}} >
             {news.map(({title,description,url,urlToImage})=>{
               if(!urlToImage)
               return null
@@ -53,7 +53,15 @@ function NewsPage() {
             })}
           </CardContent>
         </Card>
-    </Fragment>
+        <Card   className={classes.card} raised >
+        <Typography variant="h4" style={{color : 'white',padding : '.7rem 0', background : 'linear-gradient(to right, rgb(142, 45, 226), rgb(74, 0, 224))'}}>
+                Live Updates
+            </Typography>
+          <CardContent style={{background:'#efefef',height:'100%'}} >  
+            <LiveUpdates news={news} />
+          </CardContent>
+        </Card>
+    </div>
   );
 }
 

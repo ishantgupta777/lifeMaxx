@@ -21,7 +21,7 @@ export default function NewsCard({title,description,urlToArticle,urlToImage}) {
 
   return (
     <Link underline="none" href={urlToArticle} target="_blank">
-        <Card className={classes.card} variant="outlined" raised={true} style={{height:'250px',margin:'auto 1rem'}}>
+        <Card className={classes.card} raised style={{height:'250px',margin:'auto 1rem'}}>
         <CardActionArea>
             <CardMedia
             component="img"
