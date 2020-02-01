@@ -13,12 +13,14 @@ const dashboardStyles = makeStyles({
     resources : {
         width : '95%',
         margin :  'auto',
+        zIndex : '0'
     },
     resourcesInfo : {
         display : 'grid',
         gridTemplateColumns : '1fr 1fr 1fr',
         margin : '0.5rem auto',
         padding : '2rem 1rem',
+        gridRowGap : '2rem'
     },
     icon : {
         fontSize : '5rem',
@@ -27,10 +29,11 @@ const dashboardStyles = makeStyles({
     card : {
         width : '80%',
         margin : '0.5rem auto',
-        color : 'white',
-        height : '250px',
+        color : 'black',
+        height : '350px',
         overflowY : 'scroll',
         scrollbarWidth : 'none',
+        zIndex : '2',
     },
     volunteerInfo : {
 
@@ -45,17 +48,21 @@ function ResourceCard(props) {
     let iconTheme = props.icon;
     return (
         <div>
-            <Card className={classes.card} style={{background : props.color,}}>
+            <Card className={classes.card}>
                 <CardActionArea>
                     <CardContent>
-                    {props.children}
-                    <Divider light style={{border : '3px solid white'}}></Divider>
-                    <Typography gutterBottom variant="h4" component="h2">
+                    <div style={{margin : 'auto', padding : '2rem'}}>
+                        <Card raised style={{width : '90%', background : props.color, paddingTop : '1rem', margin : 'auto', zIndex : '2 '}}>
+                            {props.children}
+                        </Card>
+                    </div>
+                    <Divider light style={{border : '1px solid black', margin : '1rem auto 0rem auto'}}></Divider>
+                    <Typography gutterBottom variant="h4">
                         {props.name}
                     </Typography>
                     <Typography
                         paragraph
-                        variant = 'h5'  
+                        variant = 'h5' 
                     >
                         Current State : {props.currentState}
                         <br></br>
@@ -83,11 +90,11 @@ function Dashboard() {
             </Typography>
             <Divider style={{border : '1px solid #492540', width : '98%', margin : '0rem auto 2rem auto'}} />
             </div>
-            <Card style={{color : '#e8ffe8', borderRadius : '10px'}} raised>
+            <Card style={{color : '#e8ffe8', borderRadius : '10px', backgroundColor : '#efefef'}} raised>
             <Typography 
                 className={classes.font}
                 align="left"
-                variant="h4"
+                variant="h3"
                 style={{padding : '0.5rem 1rem', color : '#492540'}}
             >
                 Resources
