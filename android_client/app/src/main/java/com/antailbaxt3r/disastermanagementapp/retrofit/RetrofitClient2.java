@@ -14,27 +14,13 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class RetrofitClient {
+public class RetrofitClient2 {
     private static ApiInterface apiInterface;
-
-
-    public static ApiInterface getClient() {
-        if (apiInterface == null) {
-            Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl("https://lifemaxx.herokuapp.com/")
-                    .client(getHttpClient())
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .build();
-
-            apiInterface = retrofit.create(ApiInterface.class);
-        }
-        return apiInterface;
-    }
 
     public static ApiInterface getClient_mapQuest() {
         if (apiInterface == null) {
             Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl("https://www.mapquestapi.com/geocoding/v1/address")
+                    .baseUrl("https://www.mapquestapi.com/geocoding/")
                     .client(getHttpClient())
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
@@ -59,10 +45,10 @@ public class RetrofitClient {
             public Response intercept(Chain chain) throws IOException {
                 Request request = chain.request();
                 Request.Builder builder = request.newBuilder();
-//                String authToken = App.getInstance().getSessionManager().getX_AUTH_TOKEN();
-//                if (!StringUtils.isEmpty(authToken)) {
-//                    builder.addHeader("X-AUTH-TOKEN", authToken);
-//                }
+                String authToken = App.getInstance().getSessionManager().getX_AUTH_TOKEN();
+                if (!StringUtils.isEmpty(authToken)) {
+                    builder.addHeader("ekC8XsButuiKAx0FzPDfCxNBxOeZoZPV", authToken);
+                }
                 request = builder.build();
                 return chain.proceed(request);
             }

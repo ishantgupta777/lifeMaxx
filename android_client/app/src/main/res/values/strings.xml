@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">DisasterManagementApp</string>
+    <string name="app_name">LifeMaxx</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
@@ -15,4 +15,6 @@
     <string name="menu_send">Send</string>
     <string name="add_found_person">Add Found Person</string>
     <string name="heat_map">Heat Map</string>
+    <string name="add_lost_person">Add Lost Person</string>
+    <string name="about_us">About Us</string>
 </resources>

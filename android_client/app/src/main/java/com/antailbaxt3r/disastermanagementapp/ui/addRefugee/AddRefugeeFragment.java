@@ -100,6 +100,11 @@ public class AddRefugeeFragment extends Fragment {
     }
 
     private void uploadContents() {
+        if(name.getText().toString().isEmpty() || age.getText().toString().isEmpty()){
+            Toast.makeText(getContext(), "Name and Age and mandatory", Toast.LENGTH_SHORT).show();
+            progressDialog.dismiss();
+            return;
+        }
         final StorageReference fileReference = mStorageRef.child(name.getText().toString() + age.getText().toString() + ".jpg");
         image.setDrawingCacheEnabled(true);
         image.buildDrawingCache();

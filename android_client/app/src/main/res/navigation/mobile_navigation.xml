@@ -14,30 +14,30 @@
     <fragment
         android:id="@+id/nav_gallery"
         android:name="com.antailbaxt3r.disastermanagementapp.ui.addRefugee.AddRefugeeFragment"
-        android:label="@string/menu_gallery"
+        android:label="@string/add_found_person"
         tools:layout="@layout/fragment_add_refugee" />
 
     <fragment
         android:id="@+id/nav_slideshow"
         android:name="com.antailbaxt3r.disastermanagementapp.ui.heatmap.HeatMapFragment"
-        android:label="@string/menu_slideshow"
+        android:label="@string/heat_map"
         tools:layout="@layout/fragment_heatmap" />
 
     <fragment
         android:id="@+id/nav_tools"
-        android:name="com.antailbaxt3r.disastermanagementapp.ui.tools.ToolsFragment"
-        android:label="@string/menu_tools"
-        tools:layout="@layout/fragment_tools" />
+        android:name="com.antailbaxt3r.disastermanagementapp.ui.addLostPerson.AddLostPersonFragment"
+        android:label="@string/add_lost_person"
+        tools:layout="@layout/fragment_add_lost_person" />
 
-    <fragment
-        android:id="@+id/nav_share"
-        android:name="com.antailbaxt3r.disastermanagementapp.ui.share.ShareFragment"
-        android:label="@string/menu_share"
-        tools:layout="@layout/fragment_share" />
+<!--    <fragment-->
+<!--        android:id="@+id/nav_share"-->
+<!--        android:name="com.antailbaxt3r.disastermanagementapp.ui.share.ShareFragment"-->
+<!--        android:label="@string/menu_share"-->
+<!--        tools:layout="@layout/fragment_share" />-->
 
-    <fragment
-        android:id="@+id/nav_send"
-        android:name="com.antailbaxt3r.disastermanagementapp.ui.send.SendFragment"
-        android:label="@string/menu_send"
-        tools:layout="@layout/fragment_send" />
+<!--    <fragment-->
+<!--        android:id="@+id/nav_send"-->
+<!--        android:name="com.antailbaxt3r.disastermanagementapp.ui.send.SendFragment"-->
+<!--        android:label="@string/menu_send"-->
+<!--        tools:layout="@layout/fragment_send" />-->
 </navigation>

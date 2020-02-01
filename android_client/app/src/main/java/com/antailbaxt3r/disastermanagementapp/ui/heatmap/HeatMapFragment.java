@@ -86,6 +86,7 @@ public class HeatMapFragment extends Fragment {
     private MapView mapView;
     private FusedLocationProviderClient fusedLocationClient;
     private JSONObject collection;
+    private List geoList = new ArrayList();
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -106,7 +107,7 @@ public class HeatMapFragment extends Fragment {
 
                 mapboxMap.setStyle(new Style.Builder().fromUri("mapbox://styles/antailbaxt3r/ck62kbein14yp1ioynx0s4n91"), new Style.OnStyleLoaded() {
                     @Override
-                    public void onStyleLoaded(@NonNull Style style) {
+                    public void onStyleLoaded(@NonNull final Style style) {
 
                         // Map is set up and the style has loaded. Now you can add data or make other map adjustments.
 
@@ -126,7 +127,7 @@ public class HeatMapFragment extends Fragment {
                                         .target(new LatLng(
                                                 location.getLatitude(),
                                                 location.getLongitude()))
-                                        .zoom(10)
+                                        .zoom(5)
                                         .build());
                             }
                         });
@@ -145,35 +146,49 @@ public class HeatMapFragment extends Fragment {
                                         if(item.getLastLocation().size() == 0){
                                             continue;
                                         }
+                                        if(item.getLastLocation() == null){
+                                            continue;
+                                        }
                                         locations.add(new LatLng(
                                                 item.getLastLocation().get(0), item.getLastLocation().get(1)
                                         ));
                                     }
+
                                     for (LatLng location : locations) {
                                         if(location == null){
                                             continue;
                                         }
-                                        Log.i("ITEM : ", String.valueOf(location.getLongitude()));
                                         mapboxMap.addMarker(new MarkerOptions()
                                                 .position(new LatLng(
                                                         location.getLatitude(),
                                                         location.getLongitude())));
-                                        Map<String, Object> map = new HashMap<>();
-                                        map.put("type", "Feature");
-                                        List<Object[]> a = new ArrayList<Object[]>();
-                                        map.put("properties", a);
-                                        Map<String, Object> geometryMap = new HashMap<>();
-                                        geometryMap.put("type", "Point");
-                                        List<Double> coordinates = new ArrayList<>();
-                                        coordinates.add(location.getLongitude());
-                                        coordinates.add(location.getLatitude());
-                                        geometryMap.put("coordinates", coordinates);
-                                        map.put("geometry", geometryMap);
+                                            Map<String, Object> map = new HashMap<>();
+                                            map.put("type", "Feature");
+                                            Map<String, Object> geometryMap = new HashMap<>();
+                                            geometryMap.put("type", "Point");
+                                            List<Double> coordinates = new ArrayList<>();
+                                            coordinates.add(location.getLongitude());
+                                            coordinates.add(location.getLatitude());
+                                            geometryMap.put("coordinates", coordinates);
+                                            map.put("geometry", geometryMap);
 
-                                        collection = new JSONObject(map);
-                                        Log.e("COLLECTION : ", "CHECK");
-                                        Log.e("COLLECTION : ", collection.toString());
+                                            geoList.add(map);
                                     }
+
+                                Map<String, Object> finalMap = new HashMap<>();
+                                finalMap.put("features", geoList);
+                                finalMap.put("type", "FeatureCollection");
+
+                                collection = new JSONObject(finalMap);
+                                Log.e("COLLECTION CHECK : ", collection.toString());
+
+                                addClusteredGeoJsonSource(style, collection);
+                                style.addImage(
+                                        "cross-icon-id",
+                                        BitmapUtils.getBitmapFromDrawable(getResources().getDrawable(R.drawable.ic_add_a_photo_white_24dp)),
+                                        true
+                                );
+
 
                             }
 
@@ -183,24 +198,8 @@ public class HeatMapFragment extends Fragment {
                             }
                         });
 
-                        style.setTransition(new TransitionOptions(0, 0, false));
-                        mapboxMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(
-                                12.099, -79.045), 3));
-                        addClusteredGeoJsonSource(style);
-                        style.addImage(
-                                "cross-icon-id",
-                                BitmapUtils.getBitmapFromDrawable(getResources().getDrawable(R.drawable.ic_add_a_photo_white_24dp)),
-                                true
-                        );
-
-
                     }
-
-
-
                 });
-
-
             }
         });
 
@@ -209,38 +208,39 @@ public class HeatMapFragment extends Fragment {
         return root;
     }
 
-    private void addClusteredGeoJsonSource(@NonNull Style loadedMapStyle) {
+    private void addClusteredGeoJsonSource(@NonNull Style loadedMapStyle, JSONObject collection) {
 
 // Add a new source from the GeoJSON data and set the 'cluster' option to true.
+        Log.e("COLLECTION CHECK : ", collection.toString());
         try {
             loadedMapStyle.addSource(
                     new GeoJsonSource("markers",
                             collection.toString(),
+//                            new URI("https://docs.mapbox.com/mapbox-gl-js/assets/earthquakes.geojson"),
                             new GeoJsonOptions()
                                     .withCluster(true)
                                     .withClusterMaxZoom(14)
                                     .withClusterRadius(50)
                     )
             );
-            Log.e("CHECK THIS : ", loadedMapStyle.getSource("markers").toString());
         } catch (Exception e) {
-            Log.e("ERROR : ", e.getMessage());
+            Log.e("ERROR AARI HAI DEKHO : ", e.getMessage());
         }
 
 //Creating a marker layer for single data points
         SymbolLayer unclustered = new SymbolLayer("unclustered-points", "markers");
 
-        unclustered.setProperties(
-                iconImage("cross-icon-id")
-                ,
-                iconColor(
-                        interpolate(exponential(1), get("mag"),
-                                stop(2.0, rgb(0, 255, 0)),
-                                stop(4.5, rgb(0, 0, 255)),
-                                stop(7.0, rgb(255, 0, 0))
-                        )
-                )
-        );
+//        unclustered.setProperties(
+//                iconImage("cross-icon-id")
+//                ,
+//                iconColor(
+//                        interpolate(exponential(1), get("mag"),
+//                                stop(2.0, rgb(0, 255, 0)),
+//                                stop(4.5, rgb(0, 0, 255)),
+//                                stop(7.0, rgb(255, 0, 0))
+//                        )
+//                )
+//        );
 //        unclustered.setFilter(has("mag"));
         loadedMapStyle.addLayer(unclustered);
 
@@ -262,7 +262,6 @@ public class HeatMapFragment extends Fragment {
 
             Expression pointCount = toNumber(get("point_count"));
 
-// Add a filter to the cluster layer that hides the circles based on "point_count"
             circles.setFilter(
                     i == 0
                             ? all(has("point_count"),
