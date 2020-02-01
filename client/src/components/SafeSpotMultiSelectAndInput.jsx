@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
-import { MenuItem, TextField, Button } from '@material-ui/core';
+import { MenuItem, TextField, Button,Typography } from '@material-ui/core';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import FormControl from '@material-ui/core/FormControl';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -62,6 +62,7 @@ export default function MultipleSelect() {
 	};
 
 	const handleSubmit = async (e) => {
+		document.getElementById('after-submit-2').innerText = "Submitted"
     e.preventDefault()
     const response = await axios.get(
       `https://www.mapquestapi.com/geocoding/v1/address?key=ekC8XsButuiKAx0FzPDfCxNBxOeZoZPV&location=${value}`)
@@ -115,6 +116,11 @@ export default function MultipleSelect() {
 					>
 						Submit Response
 					</Button>
+					<Typography color="error" >
+                    <div id="after-submit-2">
+
+                    </div>
+                </Typography>
 				</FormControl>
 			</form>
 		</div>

@@ -3,7 +3,7 @@ import {Typography,Card,CardContent, Divider} from '@material-ui/core'
 import {makeStyles} from '@material-ui/core/styles'
 import axios from 'axios'
 import NewsCard from '../components/NewsCard'
-import LiveUpdates from '../components/LiveUpdateForm'
+import LiveUpdates from '../components/LiveUpdates'
 
 
 const useStyles = makeStyles({

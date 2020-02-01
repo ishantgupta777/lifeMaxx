@@ -9,9 +9,6 @@ const useStyles = makeStyles(theme=>({
           margin: theme.spacing(1),
         },
       },
-    card: {
-      maxWidth: 475,
-    },
     bullet: {
       display: 'inline-block',
       margin: '0 2px',

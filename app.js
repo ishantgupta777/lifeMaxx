@@ -10,6 +10,7 @@ var formRouter = require('./routes/form');
 var safePeople = require('./routes/safePeople')
 var unSafePeople = require('./routes/unsafePeople')
 var safeSpot = require('./routes/safeSpots')
+var liveUpdate = require('./routes/liveUpdate')
 
 var app = express();
 
@@ -30,6 +31,7 @@ app.use('/', formRouter);
 app.use('/safePeople', safePeople)
 app.use('/unsafePeople', unSafePeople)
 app.use('/', safeSpot)
+app.use('/liveUpdate', liveUpdate)
 
 if (process.env.NODE_ENV === 'production') {
   app.use('*', (req, res) => {
