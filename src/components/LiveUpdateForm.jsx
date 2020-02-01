@@ -15,7 +15,6 @@ const sectionStyles = makeStyles({
         width : '80%',
         margin : '1.5rem auto',
         padding : '0.5rem',
-        backgroundColor : '#faee5a  '
     },
     addUpdate : {
         width : '100%',
