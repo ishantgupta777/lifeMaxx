@@ -10,7 +10,7 @@ const MAPBOX_TOKEN =
 export default function HeatMap() {
 	const [ viewport, setViewport ] = useState({
 		width: '100%',
-		height: '85vh',
+		height: '73vh',
 		latitude: 37.7577,
 		longitude: -122.4376,
 		zoom: 2

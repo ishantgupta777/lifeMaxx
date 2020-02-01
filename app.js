@@ -9,6 +9,7 @@ var db = require('./db/mongoose')
 var formRouter = require('./routes/form');
 var safePeople = require('./routes/safePeople')
 var unSafePeople = require('./routes/unsafePeople')
+var safeSpot = require('./routes/safeSpots')
 
 var app = express();
 
@@ -28,6 +29,7 @@ app.use(cors());
 app.use('/', formRouter);
 app.use('/safePeople', safePeople)
 app.use('/unsafePeople', unSafePeople)
+app.use('/', safeSpot)
 
 if (process.env.NODE_ENV === 'production') {
   app.use('*', (req, res) => {

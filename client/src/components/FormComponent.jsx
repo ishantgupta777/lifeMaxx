@@ -28,6 +28,20 @@ const FormComponent = ({ rescueCentre, lastLocation, unsafe }) => {
 		setLastLocation(newLocation);
 	};
 
+	const handleImgHandler = (e)=>{
+		var preview = document.querySelector('#profile_pic');
+		var file = e.target.files[0];
+		var reader = new FileReader();
+
+		reader.addEventListener("load", function() {
+		  preview.src = reader.result
+		}, false);
+
+		if (file) {
+			reader.readAsDataURL(file);
+		  }
+	}
+
 	const onSubmit = async (data) => {
 		document.getElementById('form_submission').innerText = 'Submitting';
 
@@ -48,9 +62,9 @@ const FormComponent = ({ rescueCentre, lastLocation, unsafe }) => {
 
 		try {
 			const response = await axios.post('/form', form_data);
-			if (response.data.url) {
-				document.getElementById('profile_pic').src = response.data.url;
-			}
+			// if (response.data.url) {
+			// 	document.getElementById('profile_pic').src = response.data.url;
+			// }
 			document.getElementById('form_submission').innerText = 'Successfully Submitted';
 		} catch (err) {
 			document.getElementById('form_submission').innerText = 'UnSuccessfully Submitted' + err;
@@ -107,7 +121,7 @@ const FormComponent = ({ rescueCentre, lastLocation, unsafe }) => {
 				<div>
 					<Button variant="contained" color="primary" component="label" style={{ marginTop: '1rem' }}>
 						Upload Your Pic
-						<input type="file" style={{ display: 'none' }} ref={register} name="image" />
+						<input type="file" style={{ display: 'none' }} ref={register} name="image" onChange={handleImgHandler} />
 					</Button>
 
 					<TextField required id="1" label="Name" autoComplete="name" name="name" inputRef={register} />

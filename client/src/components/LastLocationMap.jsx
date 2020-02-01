@@ -11,7 +11,7 @@ export default function HeatMap() {
 	const [ coords, setCoords ] = useCoords();
 
 	const [ viewport, setViewport ] = useState({
-		width: '90%',
+		width: '100%',
 		height: '70%',
 		latitude: 37.7577,
 		longitude: -122.4376,

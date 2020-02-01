@@ -5,6 +5,7 @@ import NewsPage from './pages/NewsPage';
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
 import PersonForm from './pages/Form';
 import Map from './pages/Map';
+import HelpOthers from './pages/HelpOthers';
 import { LastLocationProvider } from './context/LastLocationContext';
 import { LastCoordsProvider } from './context/LastCoordsContext';
 
@@ -19,6 +20,7 @@ function App() {
 								<Route exact path="/" component={NewsPage} />
 								<Route path="/form" component={PersonForm} />
 								<Route path="/map" component={Map} />
+								<Route path="/help_others" component={HelpOthers} />
 							</LastLocationProvider>
 						</LastCoordsProvider>
 					</Switch>
