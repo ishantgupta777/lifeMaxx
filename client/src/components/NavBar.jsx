@@ -16,6 +16,7 @@ import MenuList from '@material-ui/core/MenuList';
 import MenuItem from '@material-ui/core/MenuItem';
 import AccessibilityIcon from '@material-ui/icons/Accessibility';
 import Typography from '@material-ui/core/Typography';
+import DashboardIcon from '@material-ui/icons/Dashboard';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 
 const drawerWidth = 240;
@@ -104,6 +105,17 @@ function NavBar({ children, location }) {
 						<AccessibilityIcon />
 					</ListItemIcon>
 					Help Others
+				</MenuItem>
+				<MenuItem
+					style={{ color: 'white' }}
+					component={Link}
+					to="/dashboard"
+					selected={'/dashboard' === location.pathname}
+				>
+					<ListItemIcon style={{ color: 'white' }}>
+						<DashboardIcon />
+					</ListItemIcon>
+					Dashboard
 				</MenuItem>
 			</MenuList>
 			{/* <Divider />

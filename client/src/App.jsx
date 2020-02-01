@@ -6,6 +6,7 @@ import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
 import PersonForm from './pages/Form';
 import Map from './pages/Map';
 import HelpOthers from './pages/HelpOthers';
+import DashBoard from './pages/DashBoard'
 import { LastLocationProvider } from './context/LastLocationContext';
 import { LastCoordsProvider } from './context/LastCoordsContext';
 
@@ -21,6 +22,7 @@ function App() {
 								<Route path="/form" component={PersonForm} />
 								<Route path="/map" component={Map} />
 								<Route path="/help_others" component={HelpOthers} />
+								<Route path="/dashboard" component={DashBoard} />
 							</LastLocationProvider>
 						</LastCoordsProvider>
 					</Switch>
