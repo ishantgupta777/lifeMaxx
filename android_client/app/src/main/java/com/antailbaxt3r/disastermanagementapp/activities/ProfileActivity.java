@@ -46,11 +46,9 @@ public class ProfileActivity extends AppCompatActivity {
             name.setText(person.getName());
         } catch (Exception e) {
         }
-        try {
-            age.setText(person.getAge());
-        } catch (Exception e) {
 
-        }
+            age.setText(String.valueOf(person.getAge()));
+
         try {
             number.setText(person.getNumber());
         } catch (Exception e) {

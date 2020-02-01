@@ -24,7 +24,7 @@ public class PeopleAPIModel {
     private String name;
     @SerializedName("age")
     @Expose
-    private Integer age;
+    private Object age;
     @SerializedName("number")
     @Expose
     private String number;
@@ -69,7 +69,7 @@ public class PeopleAPIModel {
         this.name = name;
     }
 
-    public Integer getAge() {
+    public Object getAge() {
         return age;
     }
 
