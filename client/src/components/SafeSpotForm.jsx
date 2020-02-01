@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import {Card,CardContent,Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
-import SafeSpotMultiSelect from '../components/SafeSpotMultiSelect'
+import SafeSpotMultiSelectAndInput from '../components/SafeSpotMultiSelectAndInput'
 
 const useStyles = makeStyles(theme=>({
     root: {
@@ -35,7 +35,7 @@ const SafeSpotForm = () => {
                     Add a safe spot
                 </Typography>
                 <CardContent>
-                    <SafeSpotMultiSelect/>
+                    <SafeSpotMultiSelectAndInput/>
                 </CardContent>
             </Card>
         </Fragment>

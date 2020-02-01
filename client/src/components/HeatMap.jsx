@@ -22,6 +22,9 @@ export default function HeatMap() {
 	});
 
 	const [ missingPeople, setMissingPeople ] = useState([]);
+	const [ floodSafeAreas, setFloodSafeAreas ] = useState([]);
+	const [ earthquakeSafeAreas, setEarthquakeSafeAreas ] = useState([]);
+	const [ cycloneSafeAreas, setCycloneSafeAreas ] = useState([]);
 
 	useEffect(() => {
 		function getLocation() {
@@ -41,6 +44,18 @@ export default function HeatMap() {
 		}
 		getLocation();
 
+		const getSafeSpots = async()=>{
+			let response1 = await axios.get('/safeSpots/Flood')
+			let response2 = await axios.get('/safeSpots/Earthquake')
+			let response3 = await axios.get('/safeSpots/Cyclone')
+			response1 = response1.data
+			response2 = response2.data
+			response3 = response3.data
+			setFloodSafeAreas(response1)
+			setCycloneSafeAreas(response3)
+			setEarthquakeSafeAreas(response2)
+		}
+		getSafeSpots()
 		const getMissingPeople = async () => {
 			var res = await axios.get('/unsafePeople');
 			res = res.data.map((person) => {
@@ -96,7 +111,6 @@ export default function HeatMap() {
 					cluster: isCluster,
 					point_count: pointCount
 					} = cluster.properties;
-					console.log(viewport.zoom);
 					// we have a cluster to render
 					if (isCluster) {
 					return (
@@ -147,6 +161,58 @@ export default function HeatMap() {
 					</Marker>
 					);
 				})}
+
+				{
+					floodSafeAreas.map(res=>{
+						return (
+							<Marker
+								latitude={res.lat}
+								longitude={res.long}
+							>
+										<img
+									src={require('../assets/img/flood.png')}
+									alt="flood safe area"
+									style={{ width: '30px' }}
+									draggable={false}
+								/>
+							</Marker>
+							)
+					})
+				}
+				{
+					earthquakeSafeAreas.map(res=>{
+						return (
+							<Marker
+								latitude={res.lat}
+								longitude={res.long}
+							>
+										<img
+									src={require('../assets/img/earthquake.png')}
+									alt="flood safe area"
+									style={{ width: '30px' }}
+									draggable={false}
+								/>
+							</Marker>
+							)
+					})
+				}
+				{
+					cycloneSafeAreas.map(res=>{
+						return (
+							<Marker
+								latitude={res.lat}
+								longitude={res.long}
+							>
+										<img
+									src={require('../assets/img/cyclone.png')}
+									alt="flood safe area"
+									style={{ width: '30px' }}
+									draggable={false}
+								/>
+							</Marker>
+							)
+					})
+				}
 			</ReactMapGL>
 		</Fragment>
 	);
