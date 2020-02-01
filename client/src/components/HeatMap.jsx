@@ -107,43 +107,45 @@ export default function HeatMap() {
 				)}
 				{clusters.map(cluster => {
 					const [longitude, latitude] = cluster.geometry.coordinates;
-					const {
-					cluster: isCluster,
-					point_count: pointCount
-					} = cluster.properties;
-					// we have a cluster to render
-					if (isCluster) {
-					return (
-						<Marker
-						key={`cluster-${cluster.id}`}
-						latitude={latitude}
-						longitude={longitude}
-						>
-						<div
-							className="cluster-marker"
-							style={{
-							width: `${20 + (pointCount / missingPeople.length) * 20}px`,
-							height: `${20 + (pointCount / missingPeople.length) * 20}px`
-							}}
-							onClick={() => {
-								const expansionZoom = Math.min(supercluster.getClusterExpansionZoom(cluster.id),20)
-						  
-								setViewport({
-								  ...viewport,
-								  latitude,
-								  longitude,
-								  zoom: expansionZoom,
-								  transitionInterpolator: new FlyToInterpolator({
-									speed: 2
-								  }),
-								  transitionDuration: "auto"
-								});
-							  }}
-						>
-							{pointCount}
-						</div>
-						</Marker>
-					);
+						if(longitude && latitude){
+							const {
+								cluster: isCluster,
+								point_count: pointCount
+								} = cluster.properties;
+								// we have a cluster to render
+								if (isCluster) {
+								return (
+									<Marker
+									key={`cluster-${cluster.id}`}
+									latitude={latitude}
+									longitude={longitude}
+									>
+									<div
+										className="cluster-marker"
+										style={{
+										width: `${20 + (pointCount / missingPeople.length) * 20}px`,
+										height: `${20 + (pointCount / missingPeople.length) * 20}px`
+										}}
+										onClick={() => {
+											const expansionZoom = Math.min(supercluster.getClusterExpansionZoom(cluster.id),20)
+									  
+											setViewport({
+											  ...viewport,
+											  latitude,
+											  longitude,
+											  zoom: expansionZoom,
+											  transitionInterpolator: new FlyToInterpolator({
+												speed: 2
+											  }),
+											  transitionDuration: "auto"
+											});
+										  }}
+									>
+										{pointCount}
+									</div>
+									</Marker>
+								);
+						}
 					}
 
 					return (
