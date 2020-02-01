@@ -1,8 +1,7 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { TextField, Button, Typography, Divider, Card, CardContent } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { useForm } from 'react-hook-form';
-import LastLocationMap from './LastLocationMap';
 
 const sectionStyles = makeStyles({
     liveUpdatesContainer : {
@@ -15,7 +14,8 @@ const sectionStyles = makeStyles({
     headlineCard : {
         width : '80%',
         margin : '1.5rem auto',
-        padding : '0.5rem'
+        padding : '0.5rem',
+        backgroundColor : '#faee5a  '
     },
     addUpdate : {
         width : '100%',
@@ -30,9 +30,9 @@ const sectionStyles = makeStyles({
         margin : '1rem auto'
     },
     root: {
-		'& .MuiTextField-root': {
-			width: '100%'
-		}
+        width : '95%',
+        margin : 'auto',
+        paddingBottom : '1.5rem'
     },
 })
 
@@ -41,10 +41,10 @@ const showUpdateForm = () => {
     document.querySelector("#updFormDiv").style.display = "block";
 }
 
-const onSubmit = (data) => {
-    let formData = new FormData();
-    formData.append('title', data.title);
-}
+// const onSubmit = (data) => {
+//     let formData = new FormData();
+//     formData.append('title', data.title);
+// }
 
 function LiveUpdateForm({news, setNews}){
     const classes = sectionStyles();
@@ -83,12 +83,15 @@ function LiveUpdateForm({news, setNews}){
                 </Button>
          </div>
          <div id="updFormDiv" className={classes.updateForm}>
+         <Card 
+            raised
+            style={{margin : '2rem auto'}}>
             <Typography 
                 variant="h5"
 				style={{
 					padding: '1rem 0',
 					background: 'linear-gradient(to right, rgb(142, 45, 226), rgb(74, 0, 224))',
-					color: 'white'
+					color: 'white',
 				}}
                 >
                     Add Update
@@ -105,25 +108,29 @@ function LiveUpdateForm({news, setNews}){
                     label="Description of Situation"
                     name="title"
                     required
+                    style={{margin : 'auto', width : '95%'}}
                 >
                 </TextField>
+
+                <br></br>
 
                 <TextField
                     label = "Location"
                     name = "Location"
                     requiured
+                    style={{margin : 'auto', width : '95%'}}
                 >
                 </TextField>
 
                 <Divider light />
-                
-                <LastLocationMap />
+
 
                 <Button variant="contained" color="primary" style={{ marginTop: '1rem' }} type="submit">
 						Submit
 				</Button>
 
-            </form>
+            </form> 
+            </Card>
          </div>
         </div>
     )

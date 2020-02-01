@@ -3,7 +3,7 @@ import { TextField, Button, Typography, Divider } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
-import faker from 'faker/locale/en';
+// import faker from 'faker/locale/en';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -60,7 +60,7 @@ const onLocationChange = (e) => {
 
 };
 
-const FormComponent = ({ rescueCentre, lastLocation,unsafe }) => {
+const FormComponent = ({ rescueCentre, lastLocation, unsafe, volunteer }) => {
 	const classes = useStyles();
 	const { register, handleSubmit, errors } = useForm();
 
@@ -74,7 +74,9 @@ const FormComponent = ({ rescueCentre, lastLocation,unsafe }) => {
 					color: 'white'
 				}}
 			>
-				Submit Details Of {!unsafe ? 'Safe' : 'UnSafe'} Person
+				{volunteer ? 'Enter Volunteer Details' : 
+					`Submit Details Of ${!unsafe ? 'Safe' : 'UnSafe'} Person`
+				}
 			</Typography>
 			<Divider style={{ marginTop: '1rem' }} />
 			<img
