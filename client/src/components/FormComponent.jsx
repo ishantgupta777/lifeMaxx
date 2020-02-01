@@ -113,7 +113,7 @@ const FormComponent = ({ rescueCentre, lastLocation, unsafe }) => {
 			</Typography>
 			<Divider style={{ marginTop: '1rem' }} />
 			<img
-				src="https://bp-gc.in/3tA6HY"
+				src="https://bp-gc.in/3DwIKD"
 				id="profile_pic"
 				style={{ marginTop: '1rem', width: '250px', height: '230px', objectFit: 'cover' }}
 			/>

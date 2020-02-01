@@ -42,7 +42,7 @@ const SafeSpotForm = () => {
         <Fragment>
             <Card className={classes.card} raised>
                 <Typography variant="h4" style={{color : 'white',padding : '.7rem 0', background : 'linear-gradient(to right, rgb(142, 45, 226), rgb(74, 0, 224))'}}>
-                    Add a safe spot
+                    Add a live update
                 </Typography>
                 <CardContent>
                 <form onSubmit={handleSubmit} className={classes.root} noValidate autoComplete="off">

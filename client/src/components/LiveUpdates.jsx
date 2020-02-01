@@ -16,7 +16,7 @@ function LiveUpdates({news, setNews}){
 
     return(
          <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gridGap:'1.6rem',padding:'.5rem',background:'#efefef'}}>
-            {updates.map(({message,author='NA'})=>{
+            {updates.reverse().map(({message,author='NA'})=>{
                 return (
                     <Card raised>
                         <CardContent>
