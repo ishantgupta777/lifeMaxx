@@ -9,14 +9,14 @@ function LiveUpdates({news, setNews}){
     useEffect(()=>{
         const getUpdates = async ()=>{
             const res = await axios.get('/liveUpdate')
-            setUpdates(res.data)
+            setUpdates(res.data.reverse())
         }
         getUpdates()
     },[])
 
     return(
          <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gridGap:'1.6rem',padding:'.5rem',background:'#efefef'}}>
-            {updates.reverse().map(({message,author='NA'})=>{
+            {updates.map(({message,author='NA'})=>{
                 return (
                     <Card raised>
                         <CardContent>

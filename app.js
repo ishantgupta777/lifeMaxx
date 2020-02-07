@@ -11,6 +11,7 @@ var safePeople = require('./routes/safePeople')
 var unSafePeople = require('./routes/unsafePeople')
 var safeSpot = require('./routes/safeSpots')
 var liveUpdate = require('./routes/liveUpdate')
+var auth = require('./routes/auth')
 
 var app = express();
 
@@ -32,6 +33,7 @@ app.use('/safePeople', safePeople)
 app.use('/unsafePeople', unSafePeople)
 app.use('/', safeSpot)
 app.use('/liveUpdate', liveUpdate)
+app.use('/user', auth)
 
 if (process.env.NODE_ENV === 'production') {
   app.use('*', (req, res) => {
