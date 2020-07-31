@@ -62,8 +62,6 @@ docker-compose
 
 A step by step series of examples that tell you how to get a development env running
 
-1. change the proxy in client/package.json to http://api:5000
-2. run these command in the root folder
 ```bash
 docker-compose up --build
 ```

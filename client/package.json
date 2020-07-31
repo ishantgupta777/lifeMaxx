@@ -43,5 +43,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "https://lifemaxx.eu-gb.cf.appdomain.cloud/"
+  "proxy": "http://api:5000/"
 }
