@@ -1,0 +1,6 @@
+---
+  applications:
+   - name: GetStartedNode
+     random-route: true
+     host: lifemaxx
+     memory: 256M
