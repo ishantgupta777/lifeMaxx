@@ -8,7 +8,7 @@ function LiveUpdates({news, setNews}){
 
     useEffect(()=>{
         const getUpdates = async ()=>{
-            const res = await axios.get('/liveUpdate')
+            const res = await axios.get('https://lifemaxx.eu-gb.cf.appdomain.cloud/liveUpdate')
             setUpdates(res.data.reverse())
         }
         getUpdates()

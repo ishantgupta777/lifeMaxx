@@ -32,7 +32,7 @@ const SafeSpotForm = () => {
         const author = document.getElementById('live-update-author').value
         if(!message)
         return
-        const response = await axios.post('/liveUpdate',{
+        const response = await axios.post('https://lifemaxx.eu-gb.cf.appdomain.cloud/liveUpdate',{
             message,
             author
         })

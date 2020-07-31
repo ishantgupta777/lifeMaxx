@@ -45,9 +45,9 @@ export default function HeatMap() {
 		getLocation();
 
 		const getSafeSpots = async()=>{
-			let response1 = await axios.get('/safeSpots/Flood')
-			let response2 = await axios.get('/safeSpots/Earthquake')
-			let response3 = await axios.get('/safeSpots/Cyclone')
+			let response1 = await axios.get('https://lifemaxx.eu-gb.cf.appdomain.cloud/safeSpots/Flood')
+			let response2 = await axios.get('https://lifemaxx.eu-gb.cf.appdomain.cloud/safeSpots/Earthquake')
+			let response3 = await axios.get('https://lifemaxx.eu-gb.cf.appdomain.cloud/safeSpots/Cyclone')
 			response1 = response1.data
 			response2 = response2.data
 			response3 = response3.data
@@ -57,7 +57,7 @@ export default function HeatMap() {
 		}
 		getSafeSpots()
 		const getMissingPeople = async () => {
-			var res = await axios.get('/unsafePeople');
+			var res = await axios.get('https://lifemaxx.eu-gb.cf.appdomain.cloud/unsafePeople');
 			res = res.data.map((person) => {
 				return {
 					type: 'Feature',

@@ -19,7 +19,7 @@ const SafePeople = () => {
 
     useEffect( ()=>{
         const getSafePeople =async ()=>{
-            const response = await axios.get('/safePeople')
+            const response = await axios.get('https://lifemaxx.eu-gb.cf.appdomain.cloud/safePeople')
             setSafePeople(response.data)
         }
         getSafePeople()

@@ -61,7 +61,7 @@ const FormComponent = ({ rescueCentre, lastLocation, unsafe }) => {
 		}
 
 		try {
-			const response = await axios.post('/form', form_data);
+			const response = await axios.post('https://lifemaxx.eu-gb.cf.appdomain.cloud/form', form_data);
 			// if (response.data.url) {
 			// 	document.getElementById('profile_pic').src = response.data.url;
 			// }
