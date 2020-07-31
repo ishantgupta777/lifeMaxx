@@ -1,68 +1,154 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# lifeMaxx
 
-## Available Scripts
+ 
+![version](https://img.shields.io/badge/version-1.0.0-blue.svg) ![license](https://img.shields.io/badge/license-MIT-blue.svg) [![Website](https://img.shields.io/badge/View-Website-blue)](https://lifemaxx.herokuapp.com/)
 
-In the project directory, you can run:
+## Contents
 
-### `npm start`
+1. [Short description](#short-description)
+1. [Demo video](#demo-video)
+1. [The architecture](#the-architecture)
+1. [Long description](#long-description)
+1. [Project roadmap](#project-roadmap)
+1. [Getting started](#getting-started)
+1. [Running the tests](#running-the-tests)
+1. [Live demo](#live-demo)
+1. [Built with](#built-with)
+1. [Contributing](#contributing)
+1. [Versioning](#versioning)
+1. [Authors](#authors)
+1. [License](#license)
+1. [Acknowledgments](#acknowledgments)
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Short description
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+lifeMaxx is one stop solution to manage all disaster related problems and to find their loved ones and to organize everything so that everyone can focus on main thing i.e to help others get to safe place.
 
-### `npm test`
+### What's the problem?
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Whenever there is any disaster, there is panic everywhere. People are trying to find their missing loved ones and military forces are trying to find missing people, but they don't know where to look for and whom to look for. Everything is so disorganized and all of these things affect the main thing that really matters and that is to save people's lives.
 
-### `npm run build`
+### How can technology help?
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+lifeMaxx can manage everything related to disaster. People will know about any possibilities of disaster or any other info at one place. They can find if any of their missing relative is found at any other rescue center and if not found they can submit the details info of their missing relative and mark their last seen location on map. Admins can see available resources at any rescue center and plan accordingly. Military forces can see where to look for missing people and all the details of missing people.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+### The idea
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+The idea is to automate and simplify the whole process of disaster management and to make a single portal with all the details related to disaster management. And to collect all the details of all the missing and found people at a single place, so that we can organize everything.
 
-### `npm run eject`
+## Demo video
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+[![Watch the video](https://i.ibb.co/s6w38sf/lifeMaxx.jpg)](https://youtu.be/GOyUsnxpBAA)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## The architecture 
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+![Video transcription/translation app](https://developer.ibm.com/developer/tutorials/cfc-starter-kit-speech-to-text-app-example/images/cfc-covid19-remote-education-diagram-2.png)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+1. The user navigates to the site and uploads a video file.
+2. Watson Speech to Text processes the audio and extracts the text.
+3. Watson Translation (optionally) can translate the text to the desired language.
+4. The app stores the translated text as a document within Object Storage.
 
-## Learn More
+## Long description
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+[More detail is available here](DESCRIPTION.md)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Project roadmap
 
-### Code Splitting
+![Roadmap](roadmap.jpg)
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+## Getting started
 
-### Analyzing the Bundle Size
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+### Prerequisites
 
-### Making a Progressive Web App
+What things you need to install the software and how to install them
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+```bash
+dnf install wget
+wget http://www.example.com/install.sh
+bash install.sh
+```
 
-### Advanced Configuration
+### Installing
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+A step by step series of examples that tell you how to get a development env running
 
-### Deployment
+Say what the step will be, for example
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+```bash
+export TOKEN="fffd0923aa667c617a62f5A_fake_token754a2ad06cc9903543f1e85"
+export EMAIL="jane@example.com"
+dnf install npm
+node samplefile.js
+Server running at http://127.0.0.1:3000/
+```
 
-### `npm run build` fails to minify
+And repeat
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+```bash
+curl localhost:3000
+Thanks for looking at Code-and-Response!
+```
+
+End with an example of getting some data out of the system or using it for a little demo
+
+## Running the tests
+
+Explain how to run the automated tests for this system
+
+### Break down into end to end tests
+
+Explain what these tests test and why, if you were using something like `mocha` for instance
+
+```bash
+npm install mocha --save-dev
+vi test/test.js
+./node_modules/mocha/bin/mocha
+```
+
+### And coding style tests
+
+Explain what these tests test and why, if you chose `eslint` for example
+
+```bash
+npm install eslint --save-dev
+npx eslint --init
+npx eslint sample-file.js
+```
+
+## Live demo
+
+You can find a running system to test at [callforcode.mybluemix.net](http://callforcode.mybluemix.net/)
+
+## Built with
+
+* [IBM Cloudant](https://cloud.ibm.com/catalog?search=cloudant#search_results) - The NoSQL database used
+* [IBM Cloud Functions](https://cloud.ibm.com/catalog?search=cloud%20functions#search_results) - The compute platform for handing logic
+* [IBM API Connect](https://cloud.ibm.com/catalog?search=api%20connect#search_results) - The web framework used
+* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
+* [Maven](https://maven.apache.org/) - Dependency management
+* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+
+## Contributing
+
+Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
+
+## Versioning
+
+We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags).
+
+## Authors
+
+* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+
+See also the list of [contributors](https://github.com/Code-and-Response/Project-Sample/graphs/contributors) who participated in this project.
+
+## License
+
+This project is licensed under the Apache 2 License - see the [LICENSE](LICENSE) file for details
+
+## Acknowledgments
+
+* Based on [Billie Thompson's README template](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2).
