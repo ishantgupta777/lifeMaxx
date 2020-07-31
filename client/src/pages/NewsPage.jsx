@@ -31,7 +31,7 @@ function NewsPage() {
 
   useEffect( () => {
     const getNews = async()=>{
-      var response = await axios.get('https://newsapi.org/v2/top-headlines?category=health&apiKey=2fcbccc19b4643978c45e3609deb438c')
+      var response = await axios.get('https://cors-anywhere.herokuapp.com/https://newsapi.org/v2/top-headlines?category=health&apiKey=2fcbccc19b4643978c45e3609deb438c')
       setNews(response.data.articles)
     }
     getNews()
